@@ -5,9 +5,8 @@ import AutoComplete from 'material-ui/AutoComplete';
 import AppBar from 'material-ui/AppBar';
 
 
-import logo from './logo.svg';
+import BookComponent from './components/BookComponent';
 
-import './App.css';
 
 
 const fruit = [
@@ -43,28 +42,32 @@ class App extends Component {
   state = {
     request: '',
     response: '',
-    searchText: ''
+    searchText: '',
+    title: '',
+    content: '',
   };
 
   handleSelect (t) { this.setState( { searchText: t }) }
 
 
 
-  componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
 
+  componentDidMount() {
+
+    //this.callApi()
+    //  .then(res => this.setState({ title: res.title }))
+    //  .catch(err => console.log(err));
+  }
+/*
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('http://localhost:3001');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
 
     return body;
   };
-
+*/
   render() {
     return (
       <div className="App">
@@ -72,7 +75,7 @@ class App extends Component {
         title="FruitPicker"
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
-        <p className="App-intro">{this.state.response}</p>
+        <p>{this.state.title}</p>
 
         <AutoComplete
       floatingLabelText="Type 'peah', fuzzy search"
@@ -83,6 +86,7 @@ class App extends Component {
 
     />
     <h1> {this.state.searchText} </h1>
+    <BookComponent/>
       </div>
 
     );

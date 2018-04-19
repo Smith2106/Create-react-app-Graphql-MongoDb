@@ -1,14 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import { ApolloProvider } from "react-apollo";
+//import ApolloClient from "apollo-boost";
+import gql from "graphql-tag";
 
+
+import ApolloClient from "apollo-boost";
+
+const client = new ApolloClient({
+  uri: "http://localhost:3001/graphql"
+});
+client
+.query({
+  query: gql`
+    {
+      books {
+        title
+      }
+    }
+  `
+})
+  .then(result => console.log(result));
 const Root = () => (
   <MuiThemeProvider>
+  <ApolloProvider client={client}>
+
     <App />
+    </ApolloProvider>
+
   </MuiThemeProvider>
 );
 
@@ -16,4 +38,3 @@ ReactDOM.render(
   <Root/>,
   document.getElementById('root')
 );
-registerServiceWorker();
