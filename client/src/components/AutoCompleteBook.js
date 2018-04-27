@@ -18,9 +18,9 @@ render() {
   <Query
     query={gql`
       {
-        books {
-          title
-          author
+        allCats {
+          _id
+          name
         }
       }
     `}
@@ -30,14 +30,14 @@ render() {
       if (error) return <p>Error :</p>;
         if (data) {
           var dsConfig = {
-          text: 'title',
-          value: 'book',
+          text: 'name',
+          value: 'allCats',
           };
 
         return  <AutoComplete
         floatingLabelText="Type 'h', fuzzy search"
         filter={AutoComplete.fuzzyFilter}
-        dataSource={data.books}
+        dataSource={data.allCats}
         maxSearchResults={5}
         onNewRequest={this.handleSelect.bind(this)}
         dataSourceConfig={dsConfig}

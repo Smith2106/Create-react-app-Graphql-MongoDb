@@ -17,8 +17,8 @@ client
 .query({
   query: gql`
     {
-      books {
-        title
+      allCats {
+        name
       }
     }
   `

@@ -7,9 +7,9 @@ const BookComponent = () => (
   <Query
     query={gql`
       {
-        books {
-          title
-          author
+        allCats {
+          _id
+          name
         }
       }
     `}
@@ -18,9 +18,9 @@ const BookComponent = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      return data.books.map(({ title, author }) => (
-        <div key={title}>
-          <p>{`${title}: ${author}`}</p>
+      return data.allCats.map(({ _id, name }) => (
+        <div key={_id}>
+          <p>{`${_id}: ${name}`}</p>
         </div>
       ));
     }}
