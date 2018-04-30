@@ -17,10 +17,14 @@ type Cat {
 }
 type Query {
   allCats: [Cat!]!
+  oneCat(name: String!): Cat!
 }
 type Mutation {
   createCat(name: String!): Cat!
+  removeCat(name: String!): [Cat!]!
+
 }
+
 `;
 
 
@@ -34,6 +38,11 @@ const resolvers = {
         return x;
       });
     },
+    oneCat: async (parent, {name}, { Cat }) => {
+      const oneKitty= await Cat.findOne({'name': name});
+
+      return oneKitty;
+    },
   },
   Mutation: {
     createCat: async (parent, args, { Cat }) => {
@@ -41,6 +50,15 @@ const resolvers = {
       const kitty = await new Cat(args).save();
       kitty._id = kitty._id.toString();
       return kitty;
+    },
+  removeCat: async (parent, {name}, { Cat }) => {
+    var oneKitty= await Cat.remove(Cat.findOne({'name': name}));
+    const cats = await Cat.find();
+    return cats.map((x) => {
+      x._id = x._id.toString();
+      return x;
+    });
+
     },
   },
 };
