@@ -5,8 +5,8 @@ import AppBar from 'material-ui/AppBar';
 import AutoCompleteBook from './components/AutoCompleteBook';
 
 import BookComponent from './components/BookComponent';
-
-
+import AddTodo from './components/AddCat';
+import RemoveCat from './components/RemoveCat';
 class App extends Component {
   state = {
     request: '',
@@ -44,8 +44,12 @@ class App extends Component {
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
 
+  <AddTodo/>
     <AutoCompleteBook/>
+    <h1>{this.state.searchText}</h1>
+    <RemoveCat/>
     <BookComponent/>
+
       </div>
 
     );
