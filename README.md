@@ -1,7 +1,7 @@
-##React, graphql, mongoose, and react-apollo broilerplate
+## React, graphql, mongoose, and react-apollo broilerplate
 
-To get this started - first install mongodb and yarn Install.
+To get this started - first install mongodb.
 
-Use command 'mongod' to start mongodb, and run 'yarn install'.
+Use command `mongod` to start mongodb, and run `yarn install`.
 
-use 'yarn dev' to run server and client side code :)
+use `yarn dev` to run server and client side code :)
