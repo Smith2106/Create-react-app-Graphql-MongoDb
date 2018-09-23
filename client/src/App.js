@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 
 import AppBar from 'material-ui/AppBar';
 
-import AutoCompleteBook from './components/AutoCompleteBook';
-
-import BookComponent from './components/BookComponent';
-import AddTodo from './components/AddCat';
-import RemoveCat from './components/RemoveCat';
+import FuzzySearch from './components/FuzzySearch';
+import Paper from '@material-ui/core/Paper'
+import TableComponent from './components/TableComponent';
+import Add from './components/Add';
+import Remove from './components/Remove';
 class App extends Component {
-  state = {
+  constructor(){
+    super();
+  this.state = {
     request: '',
     response: '',
     searchText: '',
     title: '',
     content: '',
   };
+};
 
+  selectKitty (t) { this.setState( { searchText: t }) }
 
 
 
@@ -40,15 +44,17 @@ class App extends Component {
     return (
       <div className="App">
         <AppBar
-        title="Books"
+        title="Material ui, Graphql, MongoDb starter Kit"
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
 
-  <AddTodo/>
-    <AutoCompleteBook/>
+  <Add/>
+    <FuzzySearch selectKitty= {this.selectKitty.bind(this)}/>
+    <Paper>
     <h1>{this.state.searchText}</h1>
-    <RemoveCat/>
-    <BookComponent/>
+    </Paper>
+    <Remove/>
+    <TableComponent/>
 
       </div>
 

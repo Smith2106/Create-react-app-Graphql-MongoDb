@@ -89,7 +89,7 @@ const books = [
 
 
 // Put together a schema
-mongoose.connect('mongodb://127.0.0.1:27017');
+mongoose.connect('mongodb://dbuser:cabedi1@ds127490.mlab.com:27490/ctestdb');
 
 
 // Initialize the app
