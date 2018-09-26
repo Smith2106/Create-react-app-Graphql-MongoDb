@@ -48,11 +48,7 @@ class App extends Component {
     iconClassNameRight="muidocs-icon-navigation-expand-more"
   />
 
-  <Add/>
     <FuzzySearch selectKitty= {this.selectKitty.bind(this)}/>
-    <Paper>
-    <h1>{this.state.searchText}</h1>
-    </Paper>
     <Remove/>
     <TableComponent/>
 

@@ -24,7 +24,7 @@ const Remove = () => {
             onSubmit={e => {
               e.preventDefault();
               removeCat({ variables: { name: input.value } });
-              input.value = "";             
+              input.value = this.props.toRemove;            
             }}
           >
             <input
@@ -39,4 +39,4 @@ const Remove = () => {
     </Mutation>
   );
 };
-export default Remove;
+export default TableRemove;

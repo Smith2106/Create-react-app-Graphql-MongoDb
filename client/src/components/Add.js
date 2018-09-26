@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
-
+import {refetch } from "react-apollo";
 
 const ADD = gql`
 mutation createCat($name: String!) {
@@ -12,11 +12,20 @@ mutation createCat($name: String!) {
   }
 }
 `;
+class Add extends Component {
+  constructor(props){
+    super(props);
 
-const Add = () => {
+  }
+
+
+
+render(){
+  var handleToUpdate  =   this.props.handleToUpdate;
   let input;
-
+  var reFetch= this.props.reFetch;
   return (
+    
     <Mutation mutation={ADD}>
       {(createCat, { data }) => (
         <div>
@@ -25,6 +34,8 @@ const Add = () => {
               e.preventDefault();
               createCat({ variables: { name: input.value } });
               input.value = "";
+              handleToUpdate("yes");
+              reFetch();
             }}
           >
             <input
@@ -39,4 +50,5 @@ const Add = () => {
     </Mutation>
   );
 };
+}
 export default Add;
