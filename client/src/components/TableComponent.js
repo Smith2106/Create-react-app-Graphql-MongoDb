@@ -8,6 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableRemove from "./TableRemove";
 import Paper from '@material-ui/core/Paper';
 import Add from "./Add";
 
@@ -16,7 +17,8 @@ class TableComponent extends Component {
   constructor(props){
     super(props);
     var handleToUpdate  = this.handleToUpdate.bind(this);
-    this.state= {reload:"no"};
+    this.state= {reload:"no",
+                toRemove:""};
   };
 
   handleToUpdate(someArg){
@@ -56,7 +58,8 @@ render(){
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell>SimCString</TableCell>
+                <TableCell>StringStore</TableCell>
+                <TableCell>Add/Remove</TableCell>
               </TableRow>
             </TableHead>
             
@@ -68,6 +71,11 @@ render(){
             <TableRow key={_id}>
               <TableCell>{_id}</TableCell>
               <TableCell>{name}</TableCell>
+              <TableCell /*onClick={() => this.setState({toRemove:name})}*/>
+                <TableRemove 
+                toRemove={name} 
+                reFetch={() => refetch()} handleToUpdate = {handleToUpdate.bind(this)}/>
+              </TableCell>
             </TableRow>
         );
         })}
@@ -76,10 +84,9 @@ render(){
  </TableCell>
           <TableCell>
           
-            <Add  reFetch={() => refetch()} handleToUpdate = {handleToUpdate.bind(this)}/>
             </TableCell>
             <TableCell>
-              
+            <Add  reFetch={() => refetch()} handleToUpdate = {handleToUpdate.bind(this)}/>
             </TableCell>
         </TableRow>
         </TableBody>

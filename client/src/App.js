@@ -49,7 +49,6 @@ class App extends Component {
   />
 
     <FuzzySearch selectKitty= {this.selectKitty.bind(this)}/>
-    <Remove/>
     <TableComponent/>
 
       </div>

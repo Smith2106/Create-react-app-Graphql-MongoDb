@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
-
+import Button from '@material-ui/core/Button';
 
 const REMOVE = gql`
 mutation removeCat($name: String!) {
@@ -12,31 +12,37 @@ mutation removeCat($name: String!) {
 }
 `;
 
-const Remove = () => {
+class TableRemove extends Component {
+ 
+  constructor(props){
+    super(props);
+    let input;
+
+  }
   
-  let input;
+  
+ 
+  render(){
+    var handleToUpdate  =   this.props.handleToUpdate;
+    var reFetch= this.props.reFetch;
 
   return (
     <Mutation mutation={REMOVE}>
       {(removeCat, { data }) => (
+        
         <div>
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-              removeCat({ variables: { name: input.value } });
-              input.value = this.props.toRemove;            
-            }}
-          >
-            <input
-              ref={node => {
-                input = node;
-              }}
-            />
-            <button type="submit">Remove</button>
-          </form>
+            <Button variant="outlined" color="secondary" onClick = {() => 
+              {
+                removeCat({ variables: { name: this.props.toRemove } }) 
+                handleToUpdate("yes");
+                reFetch();    
+                console.log(this.props.toRemove);
+            }}> Remove </Button>
+
         </div>
       )}
     </Mutation>
   );
+            }
 };
 export default TableRemove;

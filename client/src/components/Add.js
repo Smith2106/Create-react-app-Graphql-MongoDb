@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
@@ -43,7 +44,7 @@ render(){
                 input = node;
               }}
             />
-          <button type="submit">Add</button>
+          <Button variant="outlined"  type="submit">Add</Button>
           </form>
         </div>
       )}
