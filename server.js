@@ -7,22 +7,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const resolvers = require('./resolvers');
-
-const typeDefs = `
-type Cat {
-  _id: String!
-  name: String!
-}
-type Query {
-  allCats: [Cat!]!
-  oneCat(name: String!): Cat!
-}
-type Mutation {
-  createCat(name: String!): Cat!
-  removeCat(name: String!): [Cat!]!
-
-}
-`;
+const typeDefs = require('./schema');
 
 const schema = makeExecutableSchema({
   typeDefs,
