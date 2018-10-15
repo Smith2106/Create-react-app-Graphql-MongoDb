@@ -16,7 +16,6 @@ import Add from "./Add";
 class TableComponent extends Component {
   constructor(props){
     super(props);
-    var handleToUpdate  = this.handleToUpdate.bind(this);
     this.state= {reload:"no",
                 toRemove:""};
   };
@@ -35,10 +34,20 @@ class TableComponent extends Component {
 render(){
   var handleToUpdate  =   this.handleToUpdate;
   return(
+    
+    <Paper>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>ID</TableCell>
+          <TableCell>StringStore</TableCell>
+          <TableCell>Add/Remove</TableCell>
+        </TableRow>
+      </TableHead>
   <Query
     query={gql`
       {
-        allCats {
+        allDBStrings {
           _id
           name
         }
@@ -53,18 +62,10 @@ render(){
       if (error) return <p>Error :(</p>;
   
         return(
-          <Paper>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>StringStore</TableCell>
-                <TableCell>Add/Remove</TableCell>
-              </TableRow>
-            </TableHead>
+  
             
 <TableBody>
-      {data.allCats.map(({ _id, name }) => {
+      {data.allDBStrings.map(({ _id, name }) => {
 
 
         return(
@@ -90,14 +91,16 @@ render(){
             </TableCell>
         </TableRow>
         </TableBody>
-        </Table>
-      </Paper>
+       
           
 
         );
+     
       }}
 
   </Query>
+  </Table>
+  </Paper>
 );
     }
   }

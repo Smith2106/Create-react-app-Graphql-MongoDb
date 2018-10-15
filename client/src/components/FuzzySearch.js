@@ -7,10 +7,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 
 
 class FuzzySearch extends Component {
-  constructor(props){
-    super(props);
-  
-  };
+ 
 handleSelect (t) { this.setState( { searchText: t.name });this.props.selectKitty(t.name); }
 
 render() {
@@ -18,7 +15,7 @@ render() {
   <Query
     query={gql`
       {
-        allCats {
+        allDBStrings {
           _id
           name
         }
@@ -31,13 +28,13 @@ render() {
         if (data) {
           var dsConfig = {
           text: 'name',
-          value: 'allCats',
+          value: 'allDBStrings',
           };
 
         return  <AutoComplete
         floatingLabelText="Type 'h', fuzzy search"
         filter={AutoComplete.fuzzyFilter}
-        dataSource={data.allCats}
+        dataSource={data.allDBStrings}
         maxSearchResults={5}
         onNewRequest={this.handleSelect.bind(this)}
         dataSourceConfig={dsConfig}

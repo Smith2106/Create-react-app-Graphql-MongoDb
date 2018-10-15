@@ -1,12 +1,12 @@
 export default `
-type Cat {
+type DBString{
   _id: String!
   name: String!
 }
 type Query {
-  allCats: [Cat!]!
+  allDBStrings: [DBString!]!
 }
 type Mutation {
-  createCat(name: String!): Cat!
+  createDBString(name: String!): DBString!
 }
 `;

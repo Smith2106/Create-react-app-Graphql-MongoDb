@@ -1,20 +1,20 @@
 export default {
   Query: {
-    allCats: async (parent, args, { Cat }) => {
+    allStorage: async (parent, args, { DBString }) => {
       // { _id: 123123, name: "whatever"}
-      const cats = await Cat.find();
-      return cats.map((x) => {
+      const DBStrings = await DBString.find();
+      return DBStrings.map((x) => {
         x._id = x._id.toString();
         return x;
       });
     },
   },
   Mutation: {
-    createCat: async (parent, args, { Cat }) => {
+    createDBString: async (parent, args, { DBString }) => {
       // { _id: 123123, name: "whatever"}
-      const kitty = await new Cat(args).save();
-      kitty._id = kitty._id.toString();
-      return kitty;
+      const individual = await new DBString(args).save();
+      individual._id = individual._id.toString();
+      return individual;
     },
   },
 };

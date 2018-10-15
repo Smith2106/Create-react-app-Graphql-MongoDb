@@ -17,7 +17,7 @@ client
 .query({
   query: gql`
     {
-      allCats {
+      allDBStrings {
         name
       }
     }

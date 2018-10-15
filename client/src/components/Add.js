@@ -6,8 +6,8 @@ import { Mutation } from "react-apollo";
 import {refetch } from "react-apollo";
 
 const ADD = gql`
-mutation createCat($name: String!) {
-  createCat(name: $name) {
+mutation createDBString($name: String!) {
+  createDBString(name: $name) {
     _id
     name
   }
@@ -28,12 +28,12 @@ render(){
   return (
     
     <Mutation mutation={ADD}>
-      {(createCat, { data }) => (
+      {(createDBString, { data }) => (
         <div>
           <form
             onSubmit={e => {
               e.preventDefault();
-              createCat({ variables: { name: input.value } });
+              createDBString({ variables: { name: input.value } });
               input.value = "";
               handleToUpdate("yes");
               reFetch();

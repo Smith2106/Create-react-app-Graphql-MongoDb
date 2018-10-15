@@ -11,17 +11,17 @@ const { makeExecutableSchema } = require('graphql-tools');
 
 
 const typeDefs = `
-type Cat {
+type DBString {
   _id: String!
   name: String!
 }
 type Query {
-  allCats: [Cat!]!
-  oneCat(name: String!): Cat!
+  allDBStrings: [DBString!]!
+  oneDBString(name: String!): DBString!
 }
 type Mutation {
-  createCat(name: String!): Cat!
-  removeCat(name: String!): [Cat!]!
+  createDBString(name: String!): DBString!
+  removeDBString(name: String!): [DBString!]!
 
 }
 
@@ -30,31 +30,31 @@ type Mutation {
 
 const resolvers = {
   Query: {
-    allCats: async (parent, args, { Cat }) => {
+    allDBStrings: async (parent, args, { DBString }) => {
       // { _id: 123123, name: "whatever"}
-      const cats = await Cat.find();
-      return cats.map((x) => {
+      const DBStrings = await DBString.find();
+      return DBStrings.map((x) => {
         x._id = x._id.toString();
         return x;
       });
     },
-    oneCat: async (parent, {name}, { Cat }) => {
-      const oneKitty= await Cat.findOne({'name': name});
+    oneDBString: async (parent, {name}, { DBString }) => {
+      const result= await DBString.findOne({'name': name});
 
-      return oneKitty;
+      return result;
     },
   },
   Mutation: {
-    createCat: async (parent, args, { Cat }) => {
+    createDBString: async (parent, args, { DBString }) => {
       // { _id: 123123, name: "whatever"}
-      const kitty = await new Cat(args).save();
-      kitty._id = kitty._id.toString();
-      return kitty;
+      const result = await new DBString(args).save();
+      result._id = result._id.toString();
+      return result;
     },
-  removeCat: async (parent, {name}, { Cat }) => {
-    var oneKitty= await Cat.remove(Cat.findOne({'name': name}));
-    const cats = await Cat.find();
-    return cats.map((x) => {
+  removeDBString: async (parent, {name}, { DBString }) => {
+    var result= await DBString.remove(DBString.findOne({'name': name}));
+    const DBStrings = await DBString.find();
+    return DBStrings.map((x) => {
       x._id = x._id.toString();
       return x;
     });
@@ -68,20 +68,9 @@ const schema = makeExecutableSchema({
 });
 
 
-const Cat = mongoose.model('Cat', { name: String });
+const DBString = mongoose.model('DBString', { name: String });
 // Some fake data
-/*
-const books = [
-  {
-    title: "Harry Potter and the Sorcerer's stone",
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
-*/
+
 // The GraphQL schema in string form
 
 
@@ -97,7 +86,7 @@ const app = express();
 
 app.use(cors());
 // The GraphQL endpoint
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context:{Cat} }));
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context:{DBString} }));
 
 // GraphiQL, a visual editor for queries
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));

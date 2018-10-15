@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-
 import AppBar from 'material-ui/AppBar';
-
 import FuzzySearch from './components/FuzzySearch';
-import Paper from '@material-ui/core/Paper'
 import TableComponent from './components/TableComponent';
-import Add from './components/Add';
-import Remove from './components/Remove';
+
 class App extends Component {
   constructor(){
     super();
