@@ -7,7 +7,10 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const resolvers = require('./resolvers');
+<<<<<<< HEAD
 
+=======
+>>>>>>> Refactor schema to be in separate file from server.js
 const typeDefs = require('./schema');
 
 const schema = makeExecutableSchema({
