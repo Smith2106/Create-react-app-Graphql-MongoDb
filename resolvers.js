@@ -28,14 +28,6 @@ const resolvers = {
         return x;
       });
     },
-    removeCat: async (parent, {name}, { Cat }) => {
-      var oneKitty= await Cat.remove(Cat.findOne({'name': name}));
-      const cats = await Cat.find();
-      return cats.map((x) => {
-        x._id = x._id.toString();
-        return x;
-      });
-    },
   },
 };
 
