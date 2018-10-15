@@ -7,7 +7,6 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const resolvers = require('./resolvers');
-
 const typeDefs = require('./schema');
 
 const schema = makeExecutableSchema({
@@ -18,7 +17,6 @@ const schema = makeExecutableSchema({
 
 const DBString = mongoose.model('DBString', { name: String });
 // Some fake data
-
 // The GraphQL schema in string form
 
 // Put together a schema
