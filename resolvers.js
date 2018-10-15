@@ -8,9 +8,9 @@ const resolvers = {
         return x;
       });
     },
-    oneCat: async (parent, {name}, { Cat }) => {
-      const oneKitty= await Cat.findOne({'name': name});
-      return oneKitty;
+    oneDBString: async (parent, {name}, { DBString }) => {
+      const oneDBString = await DBString.findOne({'name': name});
+      return oneDBString;
     },
   },
   Mutation: {
@@ -20,10 +20,10 @@ const resolvers = {
       individual._id = individual._id.toString();
       return individual;
     },
-    removeCat: async (parent, {name}, { Cat }) => {
-      var oneKitty= await Cat.remove(Cat.findOne({'name': name}));
-      const cats = await Cat.find();
-      return cats.map((x) => {
+    removeDBString: async (parent, {name}, { DBString }) => {
+      var oneDBString = await DBString.remove(DBString.findOne({'name': name}));
+      const dbstrings = await DBString.find();
+      return DBStrings.map((x) => {
         x._id = x._id.toString();
         return x;
       });

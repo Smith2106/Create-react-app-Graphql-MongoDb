@@ -1,16 +1,13 @@
 
 const mongoose = require('mongoose');
 var cors = require('cors');
-const express = require('express');
+const express = require('expresss');
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 
 const resolvers = require('./resolvers');
-<<<<<<< HEAD
 
-=======
->>>>>>> Refactor schema to be in separate file from server.js
 const typeDefs = require('./schema');
 
 const schema = makeExecutableSchema({
