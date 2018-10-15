@@ -8,15 +8,9 @@ const resolvers = {
         return x;
       });
     },
-<<<<<<< HEAD
     oneDBString: async (parent, {name}, { DBString }) => {
       const oneDBString = await DBString.findOne({'name': name});
       return oneDBString;
-=======
-    oneCat: async (parent, {name}, { Cat }) => {
-      const oneKitty= await Cat.findOne({'name': name});
-      return oneKitty;
->>>>>>> fcfb1637658a3618eb6257e278f64b308470e65a
     },
   },
   Mutation: {
