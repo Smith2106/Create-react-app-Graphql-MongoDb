@@ -1,17 +1,16 @@
-const typeDefs = `
-type DBString {
+const typeDef = `
+type DBString{
   _id: String!
   name: String!
 }
 type Query {
   allStorage: [DBString!]!
-  oneDBString(name: String!): DBString!
+  oneDBString: DBString!
 }
 type Mutation {
   createDBString(name: String!): DBString!
-  removeDBString(name: String!): [DBString!]!
-
+  removeDBString(name: String!): DBString!
 }
 `;
 
-module.exports = typeDefs;
+module.exports = typeDef;
