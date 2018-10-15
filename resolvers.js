@@ -23,7 +23,7 @@ const resolvers = {
     removeDBString: async (parent, {name}, { DBString }) => {
       var oneDBString = await DBString.remove(DBString.findOne({'name': name}));
       const dbstrings = await DBString.find();
-      return DBStrings.map((x) => {
+      return dbstrings.map((x) => {
         x._id = x._id.toString();
         return x;
       });

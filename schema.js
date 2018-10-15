@@ -4,7 +4,7 @@ type DBString {
   name: String!
 }
 type Query {
-  allDBStrings: [DBString!]!
+  allStorage: [DBString!]!
   oneDBString(name: String!): DBString!
 }
 type Mutation {
